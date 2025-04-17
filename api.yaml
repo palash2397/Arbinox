@@ -1,0 +1,1110 @@
+definitions:
+  securitySchemes:
+    tokenauth:
+      type: basic
+      description: bearer auth
+      name: Authorization
+      in: header
+    demouser:
+      type: basic
+  #-------------------------------------------------------------------
+  #---------------------------ADMIN----------------------------------
+  #-------------------------------------------------------------------
+  userSignup:
+    required:
+      - email
+      - javaUID
+    properties:
+      email:
+        type: string
+      javaUID:
+        type: number
+
+  verifyOTP:
+    required:
+      - email
+      - otp
+    properties:
+      email:
+        type: string
+      otp:
+        type: string
+
+  resendOTP:
+    required:
+      - email
+    properties:
+      email:
+        type: string
+
+  forgotPassword:
+    required:
+      - email
+    properties:
+      email:
+        type: string
+
+  resetPassword:
+    required:
+      - password
+      - confirmPassword
+    properties:
+      password:
+        type: string
+      confirmPassword:
+        type: string
+
+        
+  userLogin:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password: 
+        type: string
+      ip: 
+        type: string
+      termsAndConditions:
+        type: string
+
+  loginAdmin:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password: 
+        type: string
+          
+
+  socialLogin:
+    required:
+      - socialId
+      - socialType
+      - countryCode
+      - mobileNumber
+      - email
+    properties:
+      socialId:
+        type: string
+      socialType:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      countryCode:
+        type: string
+      mobileNumber:
+        type: string
+      email:
+        type: string
+      deviceToken:
+        type: string
+
+  updateProfile:
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      countryCode:
+        type: string
+      mobileNumber:
+        type: string
+      email:
+        type: string
+      deviceToken:
+        type: string
+  
+
+  changePassword:
+    required:
+      - oldPassword
+      - newPassword
+    properties:
+      oldPassword:
+        type: string
+      newPassword: 
+        type: string
+
+  #-------------------------------------------------------------------
+  #---------------------------Wallet----------------------------------
+  #-------------------------------------------------------------------
+
+  connectWallet:
+    required:
+      - uid
+    properties:
+      uid:
+        type: string
+      apiKey:
+        type: string
+      secretKey:
+        type: string
+      apiMemo:
+        type: string
+      passphrase:
+        type: string
+
+  #-------------------------------------------------------------------
+  #---------------------------Triangular Arbitrage----------------------------------
+  #-------------------------------------------------------------------
+
+  triangularProfitPaths:
+    required:
+      - connectedExchangeId
+      - startToken
+      - capital
+      - profit
+      - depth
+    properties:
+      connectedExchangeId:
+        type: string
+      startToken:
+         type: array
+         items:
+            type: string  
+      capital:
+        type: number
+      profit:
+        type: number
+      depth:
+        type: number
+        enum: [3,4,5]
+        default: 3
+
+  triangularFilterProfitPaths:
+    required:
+      - uid
+      - coins
+      - capital
+      - depth
+    properties:
+      uid:
+         type: array
+         items:
+            type: string
+      coins:
+         type: array
+         items:
+            type: string
+      capital:
+        type: number
+      depth:
+        type: number
+        enum: [3,4,5]
+        default: 3
+
+
+  triangularTradePaths:
+    required:
+      - exchangeName
+      - capital
+      - start
+      - profit
+      - depth
+    properties:
+      exchangeName:
+        type: string
+      capital:
+        type: number
+      capitalInUSDT:
+        type: number
+      start:
+        type: string
+      expectedProfit:
+        type: number
+      strategy:
+       type: array
+       items:
+         type: object
+         properties:
+           pairName:
+            type: string
+            enum: [buy,sell]
+           price:
+            type: number
+
+  autoTradeOnOff:
+    properties:
+      exchangeUID:
+        type: array
+        items:
+            type: string
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      fromCoin:
+        type: array
+        items:
+            type: string 
+      toCoin:
+        type: array
+        items:
+            type: string       
+
+    
+#-------------------------------------------------------------------
+#---------------------------Direct Arbitrage----------------------------------
+#-------------------------------------------------------------------
+  directProfitPaths:
+    required:
+      - connectedExchangeId1
+      - connectedExchangeId2
+      - startToken
+      - capital
+    properties:
+      connectedExchangeId1:
+        type: string
+      connectedExchangeId2:
+        type: string
+      startToken:
+         type: array
+         items:
+            type: string 
+      capital:
+        type: number
+  
+
+
+  directFilterProfitPaths:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string
+      startToken:
+         type: array
+         items:
+            type: string 
+      capital:
+        type: number
+
+
+
+  directtradeProfitPaths:
+    required:
+      - connectedExchangeId1
+      - connectedExchangeId2
+      - startToken
+      - capital
+    properties:
+      base:
+        type: string
+      pair:
+        type: string
+      buy :
+        type: string
+      exchange1_price:
+        type: string
+      sell :
+        type: string
+      exchange2_price:
+        type: string
+      capital:
+        type: number
+      capitalInUSDT:
+        type: number
+
+  directautoTradeOnOff:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string 
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      fromCoin:
+        type: array
+        items:
+            type: string  
+      toCoin:
+        type: array
+        items:
+            type: string       
+
+  intraFilterProfitPaths:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string
+      startToken:
+         type: array
+         items:
+            type: string 
+      capital:
+        type: number
+      threshold:
+        type: number      
+      
+
+  intratradeProfitPaths:
+    required:
+      - connectedExchangeId1
+      - connectedExchangeId2
+      - startToken
+      - capital
+    properties:
+      base:
+        type: string
+      pair:
+        type: string
+      buy :
+        type: string
+      exchange1_price:
+        type: string
+      sell :
+        type: string
+      exchange2_price:
+        type: string
+      capital:
+        type: number   
+    
+  intraautoTradeOnOff:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string 
+      capital:
+        type: number    
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      fromCoin:
+        type: array
+        items:
+            type: string  
+      toCoin:
+        type: array
+        items:
+            type: string             
+
+  loopFilterProfitPaths:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string
+      exchange3:
+        type: array
+        items:
+            type: string
+      startToken:
+         type: array
+         items:
+            type: string 
+      capital:
+        type: number
+
+
+  loopautoTradeOnOff:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string
+      exchange3:
+        type: array
+        items:
+            type: string 
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      fromCoin:
+        type: string 
+      toCoin:
+        type: string 
+
+  login:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password: 
+        type: string  
+      ip: 
+        type: string    
+      termsAndConditions:
+        type: string  
+
+  inviteUser:
+    required:
+      - email
+      - permissions
+    properties:
+      email:
+        type: string
+      url:
+        type: string
+      permissions:
+        type: object
+        properties:
+          dashboard:
+            type: boolean
+            default: false
+          staticContentManagement:
+            type: boolean
+            default: false
+          mywallet:
+            type: boolean
+            default: false
+          exchange:
+            type: boolean
+            default: false
+          arbitrage:
+            type: boolean
+            default: false
+          subscription:
+            type: boolean
+            default: false
+
+  addFAQ:
+    required:
+      - question
+      - answer
+    properties:
+      question:
+        type: string
+      answer:
+        type: string
+
+  deleteFAQ:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+
+  editFAQ:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      question:
+        type: string
+      answer:
+        type: string
+
+  updatePermissions:
+    required:
+      - userId
+      - permissions
+    properties:
+      userId:
+        type: string
+      permissions:
+        type: object
+        properties:
+          dashboard:
+            type: boolean
+            default: false
+          staticContentManagement:
+            type: boolean
+            default: false
+          mywallet:
+            type: boolean
+            default: false
+          exchange:
+            type: boolean
+            default: false
+          arbitrage:
+            type: boolean
+            default: false
+          subscription:
+            type: boolean
+            default: false
+
+  enableDisableNotification:
+    required:
+      - notifications
+    properties:
+      notifications:
+        type: object
+        properties:
+          trade_error:
+            type: boolean
+            default: false
+          trade_cancel:
+            type: boolean
+            default: false
+          trade_success:
+            type: boolean
+            default: false
+
+  addContactUs:
+    required:
+      - name
+      - email
+      - message
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      mobileNo:
+        type: string
+      message:
+        type: string
+
+  directsniperBotOnOff:
+    properties:
+      exchange1:
+        type: array
+        items:
+            type: string
+      exchange2:
+        type: array
+        items:
+            type: string 
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number 
+      numberOfTrade:
+        type: number  
+      isNumberOfTradeActive:
+        type: boolean  
+        default: false
+      fromCoin:
+        type: array
+        items:
+            type: string  
+      toCoin:
+        type: array
+        items:
+            type: string   
+
+  sniperBotTraingularOnOff:
+    properties:
+      exchangeUID:
+        type: array
+        items:
+            type: string
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      numberOfTrade:
+        type: number  
+      isNumberOfTradeActive:
+        type: boolean  
+        default: false
+      fromCoin:
+        type: array
+        items:
+            type: string 
+      toCoin:
+        type: array
+        items:
+            type: string     
+
+
+#-------------------------------------------------------------------
+#---------------Intra Arbitrage Single Exchange---------------------
+#-------------------------------------------------------------------
+  
+  intraSingleExchangeFilterProfitPaths:
+    required:
+      - uid
+      - coins
+      - capital
+    properties:
+      uid:
+         type: array
+         items:
+            type: string
+      coins:
+         type: array
+         items:
+            type: string
+      capital:
+        type: number
+      profit:
+        type: number
+
+  intraSingleExchangeTradePaths:
+    required:
+      - exchangeName
+      - capital
+      - start
+      - expectedProfit
+      - depth
+    properties:
+      exchangeName:
+        type: string
+      capital:
+        type: number
+      capitalInUSDT:
+        type: number
+      start:
+        type: string
+      expectedProfit:
+        type: number
+      strategy:
+       type: array
+       items:
+         type: object
+         properties:
+           pairName:
+            type: string
+            enum: [buy,sell]
+           price:
+            type: number
+
+  intraSingleExchangeautoTradeOnOff:
+    properties:
+      exchangeUID:
+        type: array
+        items:
+            type: string
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      fromCoin:
+        type: array
+        items:
+            type: string 
+      toCoin:
+        type: array
+        items:
+            type: string 
+
+  sniperBotIntraSingleExchangeOnOff:
+    properties:
+      exchangeUID:
+        type: array
+        items:
+            type: string
+      capital:
+        type: number
+      maxThreshold:
+        type: number 
+      minThreshold:
+        type: number  
+      numberOfTrade:
+        type: number 
+      isNumberOfTradeActive:
+        type: boolean  
+        default: false
+      fromCoin:
+        type: array
+        items:
+            type: string 
+      toCoin:
+        type: array
+        items:
+            type: string 
+  
+  addSubscription:
+    required:
+      - type
+      - value
+      - title
+      - description
+      - planStatus
+      - planDuration
+      - tradeFee
+      - profits
+      - capital
+      - exchangeUID
+      - arbitrageName
+      - pairs
+      - coinType
+      - isFuelDeduction
+      - recursiveValue
+      - show
+      - subscriptionType
+    properties:
+      type:
+        type: string
+      value:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      planStatus:
+        type: string
+      planDuration:
+        type: string
+      tradeFee:
+        type: string
+      capital:
+        type: string
+      profits:
+        type: string
+      coinType:
+        type: string
+      isFuelDeduction:
+        type: string
+      recursiveValue:
+        type: string
+      show:
+        type: string
+      subscriptionType:
+        type: string
+      exchangeUID:
+        type: array
+        items:
+            type: string 
+      arbitrageName:
+        type: array
+        items:
+            type: string 
+      pairs:
+        type: array
+        items:
+            type: string 
+
+
+
+  editSubscription:
+    required:
+      - subscriptionId
+    properties:
+      subscriptionId:
+        type: string
+      type:
+        type: string
+      value:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      planStatus:
+        type: string
+      planDuration:
+        type: string
+      tradeFee:
+        type: string
+      capital:
+        type: string
+      profits:
+        type: string
+      coinType:
+        type: string
+      isFuelDeduction:
+        type: string
+      recursiveValue:
+        type: string
+      show:
+        type: string
+      exchangeUID:
+        type: array
+        items:
+            type: string 
+      arbitrageName:
+        type: array
+        items:
+            type: string 
+      pairs:
+        type: array
+        items:
+            type: string 
+
+  addAdmin:
+    required:
+      - email
+      - mobileNumber
+      - firstName
+      - lastName
+      - countryCode
+      - permissions
+      - websiteURL
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      mobileNumber:
+        type: string
+      countryCode:
+        type: string
+      websiteURL: 
+        type: string
+      permissions:
+        type: object
+        properties:
+          dashboard:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          staticContentManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          transactionManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          userManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+              isdetails: 
+                type: boolean
+                default: false
+          newsManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          videoManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          ipAddressManagemet:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          subAdminManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          subscriptionManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          faqManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+
+  editAdmin:
+    required:
+      - userId
+      - permissions
+      - websiteURL
+    properties:
+      userId:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      mobileNumber:
+        type: string
+      countryCode:
+        type: string
+      websiteURL: 
+        type: string
+      permissions:
+        type: object
+        properties:
+          dashboard:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          staticContentManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          transactionManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          userManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+              isdetails: 
+                type: boolean
+                default: false
+          newsManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          videoManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          ipAddressManagemet:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          subAdminManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          subscriptionManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+          faqManagement:
+            type: object
+            properties:
+              isView: 
+                type: boolean
+                default: false
+              isEdit: 
+                type: boolean
+                default: false
+
+  rebalancingTrade:
+    properties: 
+      waitingTime:
+        type: string
+      arbitrageName:
+        type: string
+      rebalancingNumber:
+        type: string
+
+  intraSingleExchangeRebalancingTrade:
+    properties: 
+      waitingTime:
+        type: string
+      arbitrageName:
+        type: string
+      rebalancingNumber:
+        type: string
+

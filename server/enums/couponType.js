@@ -1,0 +1,5 @@
+module.exports = Object.freeze({
+    UNIQUE_COUPON: "UNIQUE_COUPON",
+    BULK_COUPONS: "BULK_COUPONS",
+    EXCLUSIVE_COUPONS: "EXCLUSIVE_COUPONS"
+})

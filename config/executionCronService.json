@@ -1,0 +1,60 @@
+{
+  "port": 2178,
+  "hostAddress": "localhost:2178",
+  "websocketAddress": "wss://localhost:2178",
+  "databaseHost": "172.31.1.241",
+  "databasePort": "27017",
+  "databaseName": "cex-exchange-mukhtar-24104238-nodejs-stag",
+  "jwtsecret": "nodejwt",
+  "jwtresetsecret": "nodejwt",
+  "jwtOptions": {
+    "expiresIn": "24h"
+  },
+  "nodemailer": {
+    "service": "gmail",
+    "user": "mecapdsc@gmail.com",
+    "pass": "tnfjshqnuvakmlct"
+  },
+  "AWS": {
+    "accessKeyId": "",
+    "secretAccessKey": "",
+    "region": "",
+    "smsSecret": "nodesms"
+  },
+  "swaggerDefinition": {
+    "info": {
+      "title": "cex-exchange-mukhtar-24104238-nodejs",
+      "version": "2.0",
+      "description": "cex-exchange-mukhtar-24104238-nodejs - API Docs"
+    },
+    "basePath": "/api/v1",
+    "securityDefinitions": {
+      "tokenauth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "cronTime": {
+    "coins": "*/15 * * * *",
+    "tickers": "*/1 * * * * *",
+    "tradeFees": "*/10 * * * *",
+    "makerTaker": "*/7 * * * *",
+    "autoTrades": "*/1 * * * * *",
+    "withdrawFees": "*/15 * * * *",
+    "profitPaths": "*/1 * * * * *",
+    "loopArbitrage": "*/5 * * * * *",
+    "intraArbitrage": "*/5 * * * * *",
+    "directArbitrage": "*/1 * * * * *",
+    "withdrawHistory": "*/10 * * * * *",
+    "triangularArbitrage": "*/1 * * * * *",
+    "intraSingleExchangeArbitrage": "*/1 * * * * *",
+    "sniperBot": "*/1 * * * * *",
+    "askBid": "*/2 * * * * *",
+    "userWallet": "*/2 * * * * *",
+    "allCronReset": "*/59 * * * * *"
+  },
+  "OTP_TIME_MINUTE": 3,
+  "sendGridKey": "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"
+}
